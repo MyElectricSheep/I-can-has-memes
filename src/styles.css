@@ -9,9 +9,10 @@
 }
 
 .currentMeme {
-  width: 100%;
-  max-width: 600px;
+  width: 150%;
+  max-width: 800px;
   height: auto;
+  position: relative;
 }
 
 .currentMemeBorder {

@@ -5,14 +5,12 @@ const useInputStyles = makeStyles((theme) => ({
   root: {
     border: "1px solid #e2e2e1",
     width: "220px",
-    // height: "50px",
     borderColor: theme.palette.secondary.main,
     overflow: "hidden",
     borderRadius: 4,
     backgroundColor: theme.palette.primary.main,
     transition: theme.transitions.create(["border-color", "box-shadow"]),
     "&$focused": {
-      //   padding: "0.75em 0.5em 1em 0.75em",
       backgroundColor: theme.palette.primary.main,
       boxShadow: `${fade(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,

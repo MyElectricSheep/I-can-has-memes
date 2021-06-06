@@ -1,48 +1,28 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider,
-} from "@material-ui/core/styles";
-import { amber } from "@material-ui/core/colors";
+
+// Material UI imports
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import Button from "@material-ui/core/Button";
+
+// External packages imports
 import axios from "axios";
 import Draggable from "react-draggable";
 import domtoimage from "dom-to-image";
+
+// Custom components imports
+import AppButtons from "./AppButtons";
 import CustomTextField from "./CustomTextField";
 import "./styles.css";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: amber,
-    secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
-      contrastText: "#000",
-    },
-  },
-});
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    // https://stackoverflow.com/questions/60218373/what-the-tag-means-used-in-usestyles-functions
-    // every direct descendant element of the class root will have those styles applied to it
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-    paddingBottom: "1em",
-  },
-}));
-
 const App = () => {
+  const isMobile = useMediaQuery("(max-width:455px)");
+  const isTablet = useMediaQuery("(max-width:821px)");
+
   const [memes, setMemes] = useState([]);
   const [currentMeme, setCurrentMeme] = useState();
-  const [, setActiveDrags] = useState(0);
+  const [activeDrag, setActiveDrags] = useState(0);
   const [memeText, setMemeText] = useState({
     top: "",
     bottom: "",
@@ -52,8 +32,6 @@ const App = () => {
   // a DOM element and provide us access to its methods.
   // https://medium.com/trabe/react-useref-hook-b6c9d39e2022
   let imageContainerRef = useRef();
-
-  const classes = useStyles();
 
   const getRandom = useCallback(() => {
     return Math.floor(Math.random() * memes.length);
@@ -120,14 +98,14 @@ const App = () => {
   };
 
   const handleImageInputChange = ({ target }) => {
-    setCurrentMeme(window.URL.createObjectURL(target.files[0]));
+    setCurrentMeme(URL.createObjectURL(target.files[0]));
     target.value = "";
   };
 
   const dragHandlers = { onStart, onStop };
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {currentMeme && (
         <div
           style={{
@@ -161,41 +139,14 @@ const App = () => {
               />
             </Grid>
             <Grid item container xs={12} justify="center">
-              <ButtonGroup
-                className={classes.root}
-                disableElevation
-                variant="contained"
-                size="large"
-                color="primary"
-                aria-label="contained primary button group"
-              >
-                <Button onClick={handleChangePic}>Change</Button>
-                <Button>
-                  <label htmlFor="fileInput">
-                    Load Pic
-                    <input
-                      id="fileInput"
-                      name="fileInput"
-                      type="file"
-                      accept=".jpg, .jpeg, .png"
-                      onChange={handleImageInputChange}
-                      hidden
-                    />
-                  </label>
-                </Button>
-
-                <Button onClick={handleGenerateMeme}>Generate</Button>
-                {(memeText.top || memeText.bottom) && (
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    className="reset-btn"
-                    onClick={handleResetInput}
-                  >
-                    Reset
-                  </Button>
-                )}
-              </ButtonGroup>
+              <AppButtons
+                isMobile={isMobile}
+                memeText={memeText}
+                onChangePic={handleChangePic}
+                onImageInputChange={handleImageInputChange}
+                onGenerateMeme={handleGenerateMeme}
+                onResetInput={handleResetInput}
+              />
             </Grid>
           </Grid>
           <Grid
@@ -213,22 +164,27 @@ const App = () => {
                 src={currentMeme}
                 alt="meme"
                 className="currentMeme currentMemeBorder"
+                style={isTablet ? { width: "100%", maxWidth: "600px" } : {}}
               />
             )}
             {memeText.top && (
               <Draggable bounds="parent" {...dragHandlers}>
-                <h2>{memeText.top}</h2>
+                <h2 style={{ position: "absolute", top: "10px" }}>
+                  {memeText.top}
+                </h2>
               </Draggable>
             )}
             {memeText.bottom && (
               <Draggable bounds="parent" {...dragHandlers}>
-                <h2>{memeText.bottom}</h2>
+                <h2 style={{ position: "absolute", bottom: "10px" }}>
+                  {memeText.bottom}
+                </h2>
               </Draggable>
             )}
           </Grid>
         </Box>
       </Container>
-    </ThemeProvider>
+    </>
   );
 };
 
