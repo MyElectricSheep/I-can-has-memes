@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   createMuiTheme,
-  fade,
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
 import { amber } from "@material-ui/core/colors";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
@@ -27,9 +25,6 @@ const theme = createMuiTheme({
       dark: "#ba000d",
       contrastText: "#000",
     },
-  },
-  status: {
-    danger: "orange",
   },
 });
 
