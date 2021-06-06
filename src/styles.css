@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+
+.generatorTitle {
+  text-align: center;
+  font-size: 4em;
+  margin: 0;
+  font-family: "Anton", sans-serif;
+  -webkit-text-stroke: 2px white;
+}
+
+.currentMeme {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.currentMemeBorder {
+  border: 3px solid white;
+}
+
+.backgroundMeme {
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  filter: blur(8px);
+  /* background-attachment: fixed; */
+}
+
+h2 {
+  position: absolute;
+  margin: 0;
+  width: 100%;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 48px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  /* text-shadow: 0px 0px 2px black; */
+  -webkit-text-stroke: 3px black;
+  line-height: 1;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.reset-btn {
+  margin-top: 1em;
+}
