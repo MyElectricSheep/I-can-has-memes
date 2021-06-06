@@ -35,7 +35,7 @@ const AppButtons = ({
     >
       <Button onClick={onChangePic}>Change</Button>
       <Button>
-        <label htmlFor="fileInput">
+        <label htmlFor="fileInput" className="loadPicInput">
           Load Pic
           <input
             id="fileInput"

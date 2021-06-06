@@ -15,6 +15,10 @@
   position: relative;
 }
 
+.loadPicInput {
+  cursor: pointer;
+}
+
 .currentMemeBorder {
   border: 3px solid white;
 }
