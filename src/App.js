@@ -30,8 +30,8 @@ const App = () => {
   const [currentMeme, setCurrentMeme] = useState();
   const [, setActiveDrags] = useState(0);
   const [memeText, setMemeText] = useState({
-    top: "",
-    bottom: "",
+    top: "Your text",
+    bottom: "Here",
   });
   const [runConfetti, setRunConfetti] = useState(false);
   const [emoji, setEmoji] = useState(false);
@@ -56,8 +56,7 @@ const App = () => {
         } = await axios.get("https://api.imgflip.com/get_memes");
 
         setMemes(memesArray);
-        // setCurrentMeme(memesArray[getRandom()].url);
-        setCurrentMeme(memesArray[1].url);
+        setCurrentMeme(memesArray[getRandom()].url);
 
         // without destructuring:
         // const memesData = await axios.get("https://api.imgflip.com/get_memes");
