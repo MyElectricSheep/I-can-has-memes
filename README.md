@@ -1,6 +1,6 @@
 #  😸 I Can Has Memes?
 
-> Any time you try to create an Internet meme, automatic fail. That's like the worst thing you can do.
+> Any time you try to create an Internet meme, automatic fail. That's like the worst thing you can do.  
 > **Some Random Person**
 
 Are you brave enough to try though? 😏
