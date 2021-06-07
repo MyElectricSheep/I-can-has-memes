@@ -14,8 +14,8 @@ The user can then decide which image will be the canvas for the meme (or load hi
 # ⚙️ What wizardry is this?
 
 - [Dom To Image](https://www.npmjs.com/package/dom-to-image) to convert the DOM elements into a downloadable picture 🖼️
-- [React Confetti](https://www.npmjs.com/package/react-confetti) for the 🎉 swag
-- [React Draggable](https://www.npmjs.com/package/react-draggable) for the ↕️ moving around
+- [React Confetti](https://www.npmjs.com/package/react-confetti) for the 🎉 swag
+- [React Draggable](https://www.npmjs.com/package/react-draggable) for the ↕️ moving around
 - [React Pulse Text](https://www.npmjs.com/package/react-pulse-text) For the typewriter text effect ⌨️
 
 # 🚀 Live version
