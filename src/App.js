@@ -145,7 +145,7 @@ const App = () => {
         >
           <Box
             display="flex"
-            flexDirection="row"
+            flexDirection={isMobile ? "column" : "row"}
             alignItems="center"
             justifyContent="center"
           >
