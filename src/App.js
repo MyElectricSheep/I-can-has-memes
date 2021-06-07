@@ -10,6 +10,10 @@ import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import Draggable from "react-draggable";
 import domtoimage from "dom-to-image";
+import { useWindowSize } from "react-use";
+import Confetti from "react-confetti";
+import PulseText from "react-pulse-text";
+import Emoji from "react-emoji-render";
 
 // Custom components imports
 import AppButtons from "./AppButtons";
@@ -17,21 +21,25 @@ import CustomTextField from "./CustomTextField";
 import "./styles.css";
 
 const App = () => {
+  const { width, height } = useWindowSize();
+
   const isMobile = useMediaQuery("(max-width:455px)");
   const isTablet = useMediaQuery("(max-width:821px)");
 
   const [memes, setMemes] = useState([]);
   const [currentMeme, setCurrentMeme] = useState();
-  const [activeDrag, setActiveDrags] = useState(0);
+  const [, setActiveDrags] = useState(0);
   const [memeText, setMemeText] = useState({
     top: "",
     bottom: "",
   });
+  const [runConfetti, setRunConfetti] = useState(false);
+  const [emoji, setEmoji] = useState(false);
 
   // useRef can creates a ref attribute that allow us to reference
   // a DOM element and provide us access to its methods.
   // https://medium.com/trabe/react-useref-hook-b6c9d39e2022
-  let imageContainerRef = useRef();
+  const imageContainerRef = useRef();
 
   const getRandom = useCallback(() => {
     return Math.floor(Math.random() * memes.length);
@@ -48,7 +56,8 @@ const App = () => {
         } = await axios.get("https://api.imgflip.com/get_memes");
 
         setMemes(memesArray);
-        setCurrentMeme(memesArray[getRandom()].url);
+        // setCurrentMeme(memesArray[getRandom()].url);
+        setCurrentMeme(memesArray[1].url);
 
         // without destructuring:
         // const memesData = await axios.get("https://api.imgflip.com/get_memes");
@@ -94,15 +103,28 @@ const App = () => {
       link.href = dataUrl;
       link.click();
       container.children[0].classList.add("currentMemeBorder");
+      setRunConfetti(true);
     });
   };
 
   const handleImageInputChange = ({ target }) => {
-    setCurrentMeme(URL.createObjectURL(target.files[0]));
-    target.value = "";
+    try {
+      const uploadedImageUrl = URL.createObjectURL(target.files[0]);
+      setCurrentMeme(uploadedImageUrl);
+      target.value = "";
+    } catch (e) {
+      console.log(e.message);
+      alert(
+        "There was a problem loading your image, please try again with the correct file format (jpg, jpeg, png only)"
+      );
+    }
   };
 
   const dragHandlers = { onStart, onStop };
+
+  const displayEmoji = () => {
+    setEmoji(!emoji);
+  };
 
   return (
     <>
@@ -122,7 +144,28 @@ const App = () => {
           justifyContent="center"
           height="100%"
         >
-          <p className="generatorTitle">I Can Has Memes?</p>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <PulseText
+              text="I Can Has Memes?"
+              duration={6000}
+              iterationCount={1}
+              active={!emoji}
+              onEnd={displayEmoji}
+            >
+              <p className="generatorTitle">I Can Has Memes?</p>
+            </PulseText>
+            {!emoji && (
+              <h1 className="generatorTitle" style={{ visibility: "hidden" }}>
+                _
+              </h1>
+            )}
+            {emoji && <Emoji className="generatorTitle" text="😸" />}
+          </Box>
           <Grid container spacing={2}>
             <Grid item container xs={12} justify="space-around">
               <CustomTextField
@@ -183,6 +226,16 @@ const App = () => {
             )}
           </Grid>
         </Box>
+        {runConfetti && (
+          <Confetti
+            width={width}
+            height={height}
+            recycle={false}
+            numberOfPieces={600}
+            onConfettiComplete={() => setRunConfetti(false)}
+            run={runConfetti}
+          />
+        )}
       </Container>
     </>
   );

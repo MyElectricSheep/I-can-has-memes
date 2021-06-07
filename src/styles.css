@@ -9,18 +9,18 @@
 }
 
 .currentMeme {
-  width: 150%;
+  width: 100%;
   max-width: 800px;
   height: auto;
   position: relative;
 }
 
-.loadPicInput {
-  cursor: pointer;
-}
-
 .currentMemeBorder {
   border: 3px solid white;
+}
+
+.loadPicInput {
+  cursor: pointer;
 }
 
 .backgroundMeme {
