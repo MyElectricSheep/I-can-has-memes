@@ -20,4 +20,4 @@ The user can then decide which image will be the canvas for the meme (or load hi
 
 # 🚀 Live version
 
-A [live version of the app](https://i-can-has-memes.netlify.app/) can be found here!
+A [live version of the app](https://memes.ben.express/) can be found here!
