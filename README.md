@@ -11,6 +11,8 @@ The app calls the [imgFlip](https://imgflip.com/api) API, which returns 100 meme
 
 The user can then decide which image will be the canvas for the meme (or load his very own picture), type some text and drag it around to position it properly. When the deed is done, the user can generate an image file to share on all appropriate social medias 🥳 !
 
+![I can has memes](https://raw.githubusercontent.com/MyElectricSheep/I-can-has-memes/main/I-can-has-memes-screenshot.png)
+
 # ⚙️ What wizardry is this?
 
 - [Dom To Image](https://www.npmjs.com/package/dom-to-image) to convert the DOM elements into a downloadable picture 🖼️
