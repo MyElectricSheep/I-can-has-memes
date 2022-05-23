@@ -1,5 +1,7 @@
 #  😸 I Can Has Memes?
 
+This app was created as teaching support material for the [WBS Coding School](https://www.wbscodingschool.com/) to introduce students to some **React** concepts.
+
 > Any time you try to create an Internet meme, automatic fail. That's like the worst thing you can do.  
 > **Some Random Person**
 
